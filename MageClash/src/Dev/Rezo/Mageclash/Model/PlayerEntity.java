@@ -20,7 +20,7 @@ public class PlayerEntity extends Entity{
 		
 	}
 	public enum State {
-		IDLE, WALKING, STUNNED, CASTING, DEAD
+		IDLE, WALKING, STUNNED, CASTING, DEAD, SLOWED
 	}
 	public static final float SPEED = 4f;
 	State	state = State.IDLE;
