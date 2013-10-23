@@ -110,101 +110,42 @@ public class GameScreen implements Screen,InputProcessor {
 		return false;
 	}
 
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		touchX=(((float)screenX)/(float)scWidth)*renderer.cam.viewportWidth;
-		touchY=(float)(scHeight-screenY)/scHeight*renderer.cam.viewportHeight;
-		
-		Vector2 changevector = new Vector2(
-				(touchX-(arena.player1.getPosition().x)),
-				(touchY-(arena.player1.getPosition().y)));
-		
-		if (changevector.x > 0.0f){
-			xWasNeg = false;
-		}
-		else{
-			xWasNeg = true;
-			changevector.x = Math.abs(changevector.x);
-		}
-		if (changevector.y > 0.0f){
-			yWasNeg = false;
-		}
-		else{
-			changevector.y = Math.abs(changevector.y);
-			yWasNeg = true;
-		}
-		//---
-		
-		sprechenXY = (changevector.x/changevector.y);
-		double multip = (double)sprechenXY;
-		multip = Math.atan(multip);
-		multipY = Math.cos(multip);
-		multipX = Math.sin(multip);
-		changevector = new Vector2(MagePlayer.SPEED*(float)multipX,MagePlayer.SPEED*(float)multipY);
-		
-		
-		if (xWasNeg==true){
-			changevector.x=-changevector.x;
-		}
-		if (yWasNeg==true){
-			changevector.y=-changevector.y;
-		}
-		
-		
-		controller.setPlayer1Velocity(changevector.x, changevector.y);
-		return true;
-	}
+    /**
+     * Gets a vector pointing from the player to the touch location that has a length of {@link MagePlayer#SPEED}.
+     * @param touchX The X coordinate of the touch
+     * @param touchY The Y coordinate of the touch
+     * @param player The player whose location is the origin of the vector
+     * @return A vector pointing from the player to the touch location that has a length of {@link MagePlayer#SPEED}.
+     */
+    public Vector2 getVelocityVector(float touchX, float touchY, MagePlayer player) {
+        return new Vector2(touchX, touchY).sub(player.getPosition()).nor().scl(MagePlayer.SPEED);
+    }
 
-	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		controller.desetPlayer1Velocity();
-		return true;
-	}
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        touchX=(((float)screenX)/(float)scWidth)*renderer.cam.viewportWidth;
+        touchY=(float)(scHeight-screenY)/scHeight*renderer.cam.viewportHeight;
 
-	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		touchX=(((float)screenX)/(float)scWidth)*renderer.cam.viewportWidth;
-		touchY=(float)(scHeight-screenY)/scHeight*renderer.cam.viewportHeight;
-		
-		Vector2 changevector = new Vector2(
-				(touchX-(arena.player1.getPosition().x)),
-				(touchY-(arena.player1.getPosition().y)));
-		
-		if (changevector.x > 0.0f){
-			xWasNeg = false;
-		}
-		else{
-			xWasNeg = true;
-			changevector.x = Math.abs(changevector.x);
-		}
-		if (changevector.y > 0.0f){
-			yWasNeg = false;
-		}
-		else{
-			changevector.y = Math.abs(changevector.y);
-			yWasNeg = true;
-		}
-		
-		
-		sprechenXY = (changevector.x/changevector.y);
-		double multip = (double)sprechenXY;
-		multip = Math.atan(multip);
-		multipY = Math.cos(multip);
-		multipX = Math.sin(multip);
-		changevector = new Vector2(MagePlayer.SPEED*(float)multipX,MagePlayer.SPEED*(float)multipY);
-		
-		
-		if (xWasNeg==true){
-			changevector.x=-changevector.x;
-		}
-		if (yWasNeg==true){
-			changevector.y=-changevector.y;
-		}
-		
-		
-		controller.setPlayer1Velocity(changevector.x, changevector.y);
-		return false;
-	}
+        Vector2 velocity = getVelocityVector(touchX, touchY, arena.player1);
+        controller.setPlayer1Velocity(velocity.x, velocity.y);
+        return true;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        controller.desetPlayer1Velocity();
+        return true;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        touchX=(((float)screenX)/(float)scWidth)*renderer.cam.viewportWidth;
+        touchY=(float)(scHeight-screenY)/scHeight*renderer.cam.viewportHeight;
+
+        Vector2 velocity = getVelocityVector(touchX, touchY, arena.player1);
+        controller.setPlayer1Velocity(velocity.x, velocity.y);
+        return false;
+    }
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
