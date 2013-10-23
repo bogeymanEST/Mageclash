@@ -32,9 +32,6 @@ public class PlayerEntity extends Entity{
 	public void setState(State newState) {
 		this.state = newState;
 	}
-	public void setVelocity(float x, float y){
-	//-- Sets the velocity via body --//
-	}
 	//-- spellBook processing --//
 	public void addToSpellBook(Spell spell) {
 		spellBook.add(spell);
