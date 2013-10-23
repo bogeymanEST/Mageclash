@@ -5,9 +5,11 @@ import Dev.Rezo.Mageclash.Model.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+//-- THIS CLASS IS DEPRECATED, MOVED TO DEV.REZO.MAGECLASH.MODEL.PLAYER.JAVA
 //-- Just a playerclass, this is from where the coordinates are adjusted for the movement process. 
 //-- This also stores the spells available to either player respectively. 
 //-- There are two of these in the Arena. player1 and player2**** (not yet implemented)
+//-- DEPRECATEDDEPRECATEDDEPRECATEDDEPRECATEDDEPRECATEDDEPRECATEDDEPRECATEDDEPRECATEDDEPRECATED
 public class MagePlayer {
 	public enum State {
 		IDLE, WALKING, STUNNED, CASTING, DEAD

@@ -6,8 +6,10 @@ import com.badlogic.gdx.physics.box2d.*;
 
 public class Arena {
 	public World world;
+	//--- Deprecated ---
 	public Array<RockProjectile> projectiles = new Array<RockProjectile>();
 	public MagePlayer player1;
+	//------------------
 	
 	//--- Get this stuff for upper classes
 	public MagePlayer getPlayer1(){
@@ -19,7 +21,6 @@ public class Arena {
 	//---
 	public Arena(){
 		world = new World(new Vector2(0, 0), true);
-		
 		createDemoArena();
 	}
 	private void createDemoArena(){

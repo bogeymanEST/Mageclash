@@ -61,11 +61,16 @@ public class ArenaController {
 	public void downReleased() {
 		keys.get(keys.put(Keys.DOWN, false));
 	}
-	//-- Update method
+	//--------------------------------------------
+	//------------- Update method
+	//-- THE MOST IMPORTAND PART OF THIS CLASS
+	//--------------------------------------------
 	public void update(float delta) {
 		processInput();
+		arena.world.step(1 / 30f, 6, 2);
 		player1.update(delta);
-		}
+	}
+	//--------------------------------------------
 	//-- Setting player velocity on click
 	public void setPlayer1Velocity(float x, float y){
 		touchVelocity = new Vector2(x,y);

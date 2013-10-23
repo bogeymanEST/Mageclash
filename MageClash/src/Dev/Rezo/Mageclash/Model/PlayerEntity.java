@@ -7,22 +7,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class PlayerEntity extends Entity{
-
-	@Override
-	public void render() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onHit() {
-		// TODO Auto-generated method stub
-		
-	}
 	public enum State {
-		IDLE, WALKING, STUNNED, CASTING, DEAD, SLOWED
+		IDLE, WALKING, SLOWED, STUNNED, CASTING, DEAD
 	}
 	public static final float SPEED = 4f;
+	public static final float SLOWSPEED = 2f;
+	public int HEALTH = 100;
 	State	state = State.IDLE;
 	public Array<Spell> spellBook = new Array<Spell>();
 
@@ -39,5 +29,15 @@ public class PlayerEntity extends Entity{
 	public Spell getFromSpellBook(int index) {
 		return spellBook.get(index);
 	}
+	@Override
+	public void render() {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void onHit() {
+		// TODO Auto-generated method stub
+		
+	}
 }
