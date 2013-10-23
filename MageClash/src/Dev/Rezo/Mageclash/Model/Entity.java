@@ -8,5 +8,8 @@ public abstract class Entity {
 	Body body;
 	public abstract void render();
 	public abstract void onHit();
+    public final void setVelocity(float x, float y) {
+        body.setLinearVelocity(x, y);
+    }
 
 }
