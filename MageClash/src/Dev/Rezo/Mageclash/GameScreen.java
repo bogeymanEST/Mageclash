@@ -21,12 +21,6 @@ public class GameScreen implements Screen,InputProcessor {
 	public int scHeight = Gdx.graphics.getHeight();
 	public float touchX;
 	public float touchY;
-	public boolean xWasNeg = false;
-	public boolean yWasNeg = false;
-	public float sprechenXY;
-	public double multip;
-	public double multipX;
-	public double multipY;
 	//private int width,height;
 	@Override
 	public void render(float delta) {

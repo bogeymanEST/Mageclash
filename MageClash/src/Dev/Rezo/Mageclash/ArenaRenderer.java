@@ -12,6 +12,11 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+
+import Dev.Rezo.Mageclash.Model.Entity;
 
 public class ArenaRenderer {
 	public Arena arena;
@@ -26,11 +31,18 @@ public class ArenaRenderer {
 		this.cam.position.set(8, 4.5f, 0);
 		this.cam.update();
 	}
-	//public void setPlayer1(MagePlayer newplayer1){
-	//	this.arena.player1 = newplayer1;
-	//}
 	public void render(){
-		//* RenderProjectile
+		// Body-based renderloop goes here
+		Array<Body> bodies = new Array<Body>();
+		arena.world.getBodies(bodies);
+		for(Body body : bodies) {
+			if(body == null) continue;
+			Entity data = (Entity) body.getUserData();
+			if(data == null) continue;
+			data.render(this);
+		}
+		//* RenderProjectile 
+		//DEPRECATED
 		debugRenderer.setProjectionMatrix(cam.combined);
 		debugRenderer.begin(ShapeType.Line);
 		for (RockProjectile projectile: arena.getProjectiles()){
@@ -40,6 +52,7 @@ public class ArenaRenderer {
 			debugRenderer.setColor(new Color(1, 0, 0, 1));
 			debugRenderer.circle(x1, y1, circ.radius, 20);
 		}
+		// DEPRECATED
 		//debugRenderer.end();
 		//debugRenderer.setProjectionMatrix(cam.combined);
 		//debugRenderer.begin(ShapeType.Line);

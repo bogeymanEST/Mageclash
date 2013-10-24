@@ -6,11 +6,12 @@ import java.util.Map;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.math.Vector2;
-
 import Dev.Rezo.Mageclash.MagePlayer;
 import Dev.Rezo.Mageclash.MagePlayer.State;
 import Dev.Rezo.Mageclash.Arena;
-import Dev.Rezo.Mageclash.RockProjectile;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.World;
+import Dev.Rezo.Mageclash.Model.Entity;
 
 
 public class ArenaController {
@@ -29,8 +30,6 @@ public class ArenaController {
 		keys.put(Keys.TOUCHED, false);
 
 	};
-	// Collision not yet implemented
-	// private Array<RockProjectile> collidable = new Array<RockProjectile>();
 	public ArenaController(Arena arena) {
 		this.arena = arena;
 		this.player1 = arena.getPlayer1();
@@ -69,6 +68,17 @@ public class ArenaController {
 		processInput();
 		arena.world.step(1 / 30f, 6, 2);
 		player1.update(delta);
+		Array<Body> bodies = new Array<Body>();
+		arena.world.getBodies(bodies);
+		for(Body body : bodies) {
+			if(body == null) continue;
+			Entity data = (Entity) body.getUserData();
+			if(data == null) continue;
+			if(data.deleteThis) {
+				arena.world.destroyBody(body);
+				continue;
+				}
+		}
 	}
 	//--------------------------------------------
 	//-- Setting player velocity on click

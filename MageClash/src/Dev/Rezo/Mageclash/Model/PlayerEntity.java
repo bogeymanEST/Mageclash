@@ -1,6 +1,7 @@
 package Dev.Rezo.Mageclash.Model;
 
 import Dev.Rezo.Mageclash.MagePlayer.State;
+import Dev.Rezo.Mageclash.ArenaRenderer;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -30,7 +31,7 @@ public class PlayerEntity extends Entity{
 		return spellBook.get(index);
 	}
 	@Override
-	public void render() {
+	public void render(ArenaRenderer renderer) {
 		// TODO Auto-generated method stub
 		
 	}
