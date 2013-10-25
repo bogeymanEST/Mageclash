@@ -3,6 +3,7 @@ package Dev.Rezo.Mageclash.Model;
 import Dev.Rezo.Mageclash.MagePlayer.State;
 import Dev.Rezo.Mageclash.ArenaRenderer;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -33,7 +34,8 @@ public class PlayerEntity extends Entity{
 	@Override
 	public void render(ArenaRenderer renderer) {
 		// TODO Auto-generated method stub
-		
+		renderer.debugRenderer.setColor(new Color(0, 0, 0.9f, 1));
+		renderer.debugRenderer.circle(body.getPosition().x,body.getPosition().y,1f, 20);
 	}
 
 	@Override

@@ -23,7 +23,7 @@ public class ArenaRenderer {
 	public OrthographicCamera cam;
 	
 	//-- Debug Rendering --//
-	ShapeRenderer debugRenderer = new ShapeRenderer();
+	public ShapeRenderer debugRenderer = new ShapeRenderer();
 	
 	public ArenaRenderer(Arena arena){
 		this.arena = arena;
