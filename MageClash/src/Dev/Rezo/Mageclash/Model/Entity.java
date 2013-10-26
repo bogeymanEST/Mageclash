@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.physics.box2d.*;
 public abstract class Entity {
 	public boolean deleteThis;
-	Body body;
+	public Body body;
 	public abstract void render(ArenaRenderer renderer);
 	public abstract void onHit();
     public final void setVelocity(float x, float y) {

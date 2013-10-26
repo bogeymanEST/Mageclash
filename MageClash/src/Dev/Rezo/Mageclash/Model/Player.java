@@ -4,10 +4,7 @@ import Dev.Rezo.Mageclash.Arena;
 import com.badlogic.gdx.physics.box2d.*;
 
 public class Player {
-	//public Player(Arena arena) {
-		
-	//}
-	public void create(float x, float y,short playerID,World world){
+	public static PlayerEntity create(float x, float y,short playerID,World world){
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyDef.BodyType.KinematicBody;
 		bodyDef.position.set(x, y);
@@ -26,7 +23,7 @@ public class Player {
 		pEnt.body = body;
 		body.setUserData(pEnt);
 		kinematicCircle.dispose();
-        
+        return pEnt;
 	}
 
 }

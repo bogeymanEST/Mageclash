@@ -3,6 +3,7 @@ package Dev.Rezo.Mageclash;
 import Dev.Rezo.Mageclash.Arena;
 import Dev.Rezo.Mageclash.ArenaRenderer;
 import Dev.Rezo.Mageclash.Controller.ArenaController;
+import Dev.Rezo.Mageclash.Model.PlayerEntity;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
@@ -111,8 +112,8 @@ public class GameScreen implements Screen,InputProcessor {
      * @param player The player whose location is the origin of the vector
      * @return A vector pointing from the player to the touch location that has a length of {@link MagePlayer#SPEED}.
      */
-    public Vector2 getVelocityVector(float touchX, float touchY, MagePlayer player) {
-        return new Vector2(touchX, touchY).sub(player.getPosition()).nor().scl(MagePlayer.SPEED);
+    public Vector2 getVelocityVector(float touchX, float touchY, PlayerEntity player) {
+        return new Vector2(touchX, touchY).sub(player.body.getPosition()).nor().scl(PlayerEntity.SPEED);
     }
 
     @Override
@@ -120,8 +121,8 @@ public class GameScreen implements Screen,InputProcessor {
         touchX=(((float)screenX)/(float)scWidth)*renderer.cam.viewportWidth;
         touchY=(float)(scHeight-screenY)/scHeight*renderer.cam.viewportHeight;
 
-        Vector2 velocity = getVelocityVector(touchX, touchY, arena.player1);
-        controller.setPlayer1Velocity(velocity.x, velocity.y);
+        Vector2 velocity = getVelocityVector(touchX, touchY, arena.playerentity1);
+        arena.playerentity1.setVelocity(velocity.x, velocity.y);
         return true;
     }
 
@@ -136,9 +137,9 @@ public class GameScreen implements Screen,InputProcessor {
         touchX=(((float)screenX)/(float)scWidth)*renderer.cam.viewportWidth;
         touchY=(float)(scHeight-screenY)/scHeight*renderer.cam.viewportHeight;
 
-        Vector2 velocity = getVelocityVector(touchX, touchY, arena.player1);
-        controller.setPlayer1Velocity(velocity.x, velocity.y);
-        return false;
+        Vector2 velocity = getVelocityVector(touchX, touchY, arena.playerentity1);
+        arena.playerentity1.setVelocity(velocity.x, velocity.y);
+        return true;
     }
 
 	@Override
