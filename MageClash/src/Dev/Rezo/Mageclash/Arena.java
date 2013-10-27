@@ -10,33 +10,14 @@ import com.badlogic.gdx.physics.box2d.*;
 
 public class Arena {
 	public World world;
-	//--- Deprecated ---
-	public Array<RockProjectile> projectiles = new Array<RockProjectile>();
-	public MagePlayer player1;
+	//--- Player entities ---
 	public PlayerEntity playerentity1;
 	public PlayerEntity playerentity2;
-	//------------------
-	
-	//--- Get this stuff for upper classes, DEPRECATED---
-	public MagePlayer getPlayer1(){
-		return player1;
-	}
-	public Array<RockProjectile> getProjectiles() {
-		return projectiles;
-	}
-	//-------------------------------------------------------
+	//-----------------------
 	public Arena(){
 		world = new World(new Vector2(0, 0), true);
 		playerentity1 = Player.create(5f,5f,(short)-1,world);
-		playerentity2 = Player.create(5f,14f,(short)-2,world);
-		createDemoArena(); // DEPRECATED
-	}
-	//------DEPRECATED
-	private void createDemoArena(){ 
-		player1 = new MagePlayer(new Vector2(7,2));
-		projectiles.add(new RockProjectile(new Vector2(7,4)));
-		projectiles.add(new RockProjectile(new Vector2(9,2)));
-		projectiles.add(new RockProjectile(new Vector2(1,1)));
+		playerentity2 = Player.create(14f,5f,(short)-2,world);
 	}
 
 

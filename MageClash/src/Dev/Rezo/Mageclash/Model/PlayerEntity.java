@@ -1,6 +1,5 @@
 package Dev.Rezo.Mageclash.Model;
 
-import Dev.Rezo.Mageclash.MagePlayer.State;
 import Dev.Rezo.Mageclash.ArenaRenderer;
 
 import com.badlogic.gdx.graphics.Color;

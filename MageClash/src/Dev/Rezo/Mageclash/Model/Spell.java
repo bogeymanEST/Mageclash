@@ -1,6 +1,5 @@
 package Dev.Rezo.Mageclash.Model;
 import Dev.Rezo.Mageclash.Arena;
-import Dev.Rezo.Mageclash.MagePlayer;
 import Dev.Rezo.Mageclash.Model.SpellInfo;
 public abstract class Spell {
 	public abstract void fire(SpellInfo spellinfo);
