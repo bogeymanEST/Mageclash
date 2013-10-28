@@ -61,6 +61,7 @@ public class ArenaController {
 	//-- THE MOST IMPORTAND PART OF THIS CLASS
 	//--------------------------------------------
 	public void update(float delta) {
+		arena.playerentity1.checkSpeed();
 		arena.world.step(1 / 30f, 6, 2);
 		Array<Body> bodies = new Array<Body>();
 		arena.world.getBodies(bodies);

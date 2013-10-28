@@ -4,6 +4,7 @@ import Dev.Rezo.Mageclash.Arena;
 import Dev.Rezo.Mageclash.ArenaRenderer;
 import Dev.Rezo.Mageclash.Controller.ArenaController;
 import Dev.Rezo.Mageclash.Model.PlayerEntity;
+import Dev.Rezo.Mageclash.Model.PlayerEntity.State;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
@@ -123,12 +124,15 @@ public class GameScreen implements Screen,InputProcessor {
 
         Vector2 velocity = getVelocityVector(touchX, touchY, arena.playerentity1);
         arena.playerentity1.setVelocity(velocity.x, velocity.y);
+        arena.playerentity1.targetlocation = new Vector2(touchX, touchY);
+        arena.playerentity1.setState(State.WALKING);
         return true;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         arena.playerentity1.setVelocity(0,0);
+        arena.playerentity1.setState(State.IDLE);
         return true;
     }
 
@@ -136,9 +140,10 @@ public class GameScreen implements Screen,InputProcessor {
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         touchX=(((float)screenX)/(float)scWidth)*renderer.cam.viewportWidth;
         touchY=(float)(scHeight-screenY)/scHeight*renderer.cam.viewportHeight;
-
         Vector2 velocity = getVelocityVector(touchX, touchY, arena.playerentity1);
         arena.playerentity1.setVelocity(velocity.x, velocity.y);
+        arena.playerentity1.targetlocation = new Vector2(touchX, touchY);
+        arena.playerentity1.setState(State.WALKING);
         return true;
     }
 

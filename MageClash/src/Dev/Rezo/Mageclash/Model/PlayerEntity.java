@@ -14,6 +14,7 @@ public class PlayerEntity extends Entity{
 	public static final float SPEED = 4f;
 	public static final float SLOWSPEED = 2f;
 	public int HEALTH = 100;
+	public Vector2 targetlocation;
 	State	state = State.IDLE;
 	public Array<Spell> spellBook = new Array<Spell>();
 
@@ -29,6 +30,16 @@ public class PlayerEntity extends Entity{
 	}
 	public Spell getFromSpellBook(int index) {
 		return spellBook.get(index);
+	}
+	public void checkSpeed(){
+		if (state == State.WALKING){
+			if ((targetlocation.x-0.1)<body.getPosition().x && body.getPosition().x<(targetlocation.x+0.1)){
+				if ((targetlocation.y-0.1)<body.getPosition().y && body.getPosition().y<(targetlocation.y+0.1)){
+					setVelocity(0,0);
+					setState(State.IDLE);
+				}
+			}
+		}
 	}
 	@Override
 	public void render(ArenaRenderer renderer) {
