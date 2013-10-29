@@ -45,7 +45,7 @@ public class PlayerEntity extends Entity{
 	public void render(ArenaRenderer renderer) {
 		// TODO Auto-generated method stub
 		renderer.debugRenderer.setColor(new Color(0, 0, 0.9f, 1));
-		renderer.debugRenderer.circle(body.getPosition().x,body.getPosition().y,1f, 20);
+		renderer.debugRenderer.circle(body.getPosition().x,body.getPosition().y,1f, 40);
 	}
 
 	@Override
