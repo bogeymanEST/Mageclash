@@ -9,8 +9,9 @@ import com.badlogic.gdx.utils.Array;
 
 public class PlayerEntity extends Entity{
 	public enum State {
-		IDLE, WALKING, SLOWED, STUNNED, CASTING, DEAD
+		IDLE, WALKING, SLOWED, STUNNED, DEAD
 	}
+	public boolean isCasting = false;
 	public static final float SPEED = 4f;
 	public static final float SLOWSPEED = 2f;
 	public int HEALTH = 100;

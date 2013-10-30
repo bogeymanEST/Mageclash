@@ -131,9 +131,7 @@ public class GameScreen implements Screen,InputProcessor {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        arena.playerentity1.setVelocity(0,0);
-        arena.playerentity1.setState(State.IDLE);
-        return true;
+        return false;
     }
 
     @Override
