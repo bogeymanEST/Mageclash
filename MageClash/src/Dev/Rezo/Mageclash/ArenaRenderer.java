@@ -42,6 +42,7 @@ public class ArenaRenderer {
 			data.render(this);
 			
 		}
+		arena.spellbutton1.render(this);
 		debugRenderer.end();
 	}
 	
