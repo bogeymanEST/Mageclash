@@ -12,6 +12,7 @@ public class PlayerEntity extends Entity{
 		IDLE, WALKING, SLOWED, STUNNED, DEAD
 	}
 	public boolean isCasting = false;
+	public int spellIndex;
 	public static final float SPEED = 4f;
 	public static final float SLOWSPEED = 2f;
 	public int HEALTH = 100;
@@ -32,6 +33,13 @@ public class PlayerEntity extends Entity{
 	public Spell getFromSpellBook(int index) {
 		return spellBook.get(index);
 	}
+	public Spell getActiveSpell(){
+		return spellBook.get(spellIndex);
+	}
+	public void activateSpell(boolean isSpellActive, int spellindex){
+		isCasting = isSpellActive;
+		spellIndex = spellindex;
+	}
 	public void checkSpeed(){
 		if (state == State.WALKING){
 			if ((targetlocation.x-0.1)<body.getPosition().x && body.getPosition().x<(targetlocation.x+0.1)){
@@ -42,6 +50,7 @@ public class PlayerEntity extends Entity{
 			}
 		}
 	}
+
 	@Override
 	public void render(ArenaRenderer renderer) {
 		// TODO Auto-generated method stub

@@ -11,7 +11,7 @@ public class Player {
 		Body body = world.createBody(bodyDef);
 
 		CircleShape kinematicCircle = new CircleShape();
-		kinematicCircle.setRadius(1f);
+		kinematicCircle.setRadius(0.5f);
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = kinematicCircle;
 		fixtureDef.density = 1.0f;

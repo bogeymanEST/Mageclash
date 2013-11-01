@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import Dev.Rezo.Mageclash.Model.SpellInfo;
 public class FireballSpell extends Spell{
+	static float SPEED = 4f;
 
 	@Override
 	public void fire(SpellInfo spellinfo) {
@@ -15,18 +16,18 @@ public class FireballSpell extends Spell{
 		Body body = spellinfo.arena.world.createBody(bodyDef);
 
 		CircleShape dynamicCircle = new CircleShape();
-		dynamicCircle.setRadius(1f);
+		dynamicCircle.setRadius(0.5f);
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = dynamicCircle;
 		fixtureDef.density = 1.0f;
-		fixtureDef.friction = 0.0f;
-		fixtureDef.restitution = 0.0f;
+		fixtureDef.friction = 1.0f;
+		fixtureDef.restitution = 1.0f;
 		fixtureDef.filter.groupIndex = spellinfo.playerID;
 		
 
 		FireballEntity fEnt = new FireballEntity();
 		fEnt.body = body;
-		body.setLinearVelocity(spellinfo.firedirection.x, spellinfo.firedirection.y);
+		body.setLinearVelocity(spellinfo.firedirection.scl(SPEED));
 		body.setUserData(fEnt);
 		dynamicCircle.dispose();
 		
@@ -51,7 +52,7 @@ public class FireballSpell extends Spell{
 
 		FireballEliteEntity fEEnt = new FireballEliteEntity();
 		fEEnt.body = body;
-		body.setLinearVelocity(spellinfo.firedirection.x, spellinfo.firedirection.y);
+		body.setLinearVelocity(spellinfo.firedirection.scl(SPEED));
 		body.setUserData(fEEnt);
 		dynamicCircle.dispose();
 		

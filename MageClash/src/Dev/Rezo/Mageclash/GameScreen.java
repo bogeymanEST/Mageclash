@@ -5,6 +5,7 @@ import Dev.Rezo.Mageclash.ArenaRenderer;
 import Dev.Rezo.Mageclash.Controller.ArenaController;
 import Dev.Rezo.Mageclash.Model.PlayerEntity;
 import Dev.Rezo.Mageclash.Model.PlayerEntity.State;
+import Dev.Rezo.Mageclash.Model.SpellInfo;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
@@ -116,16 +117,30 @@ public class GameScreen implements Screen,InputProcessor {
     public Vector2 getVelocityVector(float touchX, float touchY, PlayerEntity player) {
         return new Vector2(touchX, touchY).sub(player.body.getPosition()).nor().scl(PlayerEntity.SPEED);
     }
+    public Vector2 getDirectionVector(float touchX, float touchY, PlayerEntity player) {
+    	return new Vector2(touchX, touchY).sub(player.body.getPosition()).nor();
+    }
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         touchX=(((float)screenX)/(float)scWidth)*renderer.cam.viewportWidth;
         touchY=(float)(scHeight-screenY)/scHeight*renderer.cam.viewportHeight;
-
-        Vector2 velocity = getVelocityVector(touchX, touchY, arena.playerentity1);
-        arena.playerentity1.setVelocity(velocity.x, velocity.y);
-        arena.playerentity1.targetlocation = new Vector2(touchX, touchY);
-        arena.playerentity1.setState(State.WALKING);
+        // testing buttonpush
+        if (arena.spellbutton1.isTouched(new Vector2(touchX,touchY))){
+        	arena.playerentity1.activateSpell(true, 0);
+        }
+        else{
+        	if (arena.playerentity1.isCasting == true){
+        		arena.playerentity1.getActiveSpell().fire(new SpellInfo(arena,arena.playerentity1.body.getPosition() , getDirectionVector(touchX, touchY, arena.playerentity1),(short) -1 ));
+        		arena.playerentity1.activateSpell(false, 0);
+        	}
+        	else{
+                Vector2 velocity = getVelocityVector(touchX, touchY, arena.playerentity1);
+                arena.playerentity1.setVelocity(velocity.x, velocity.y);
+                arena.playerentity1.targetlocation = new Vector2(touchX, touchY);
+                arena.playerentity1.setState(State.WALKING);	
+        	}
+        }
         return true;
     }
 
@@ -136,8 +151,9 @@ public class GameScreen implements Screen,InputProcessor {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        touchX=(((float)screenX)/(float)scWidth)*renderer.cam.viewportWidth;
+    	touchX=(((float)screenX)/(float)scWidth)*renderer.cam.viewportWidth;
         touchY=(float)(scHeight-screenY)/scHeight*renderer.cam.viewportHeight;
+        
         Vector2 velocity = getVelocityVector(touchX, touchY, arena.playerentity1);
         arena.playerentity1.setVelocity(velocity.x, velocity.y);
         arena.playerentity1.targetlocation = new Vector2(touchX, touchY);

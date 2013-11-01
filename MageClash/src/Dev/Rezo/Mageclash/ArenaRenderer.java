@@ -30,7 +30,7 @@ public class ArenaRenderer {
 		this.cam.update();
 	}
 	public void render(){
-		// Body-based renderloop goes here
+		// Body-based render loop goes here
 		Array<Body> bodies = new Array<Body>();
 		arena.world.getBodies(bodies);
 		debugRenderer.setProjectionMatrix(cam.combined);
