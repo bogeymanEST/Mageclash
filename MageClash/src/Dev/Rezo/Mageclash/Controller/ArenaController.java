@@ -24,11 +24,9 @@ public class ArenaController {
 		LEFT,RIGHT,UP,DOWN,TOUCHED
 		} 
 	private Arena arena;
-	private PlayerEntity playerentity;
 	static Map<Keys, Boolean> keys = new HashMap<ArenaController.Keys, Boolean>();
 	public ArenaController(Arena arena) {
 		this.arena = arena;
-		this.playerentity = arena.playerentity1;
 	}
 
 	// CONTROLLS

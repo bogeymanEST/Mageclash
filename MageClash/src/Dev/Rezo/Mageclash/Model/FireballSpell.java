@@ -12,7 +12,7 @@ public class FireballSpell extends Spell{
 	public void fire(SpellInfo spellinfo) {
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyDef.BodyType.DynamicBody;
-		bodyDef.position.set(spellinfo.playerposition.x, spellinfo.playerposition.y);
+		bodyDef.position.set(spellinfo.playerposition.x+spellinfo.firedirection.x, spellinfo.playerposition.y+spellinfo.firedirection.y);
 		Body body = spellinfo.arena.world.createBody(bodyDef);
 
 		CircleShape dynamicCircle = new CircleShape();
@@ -37,7 +37,7 @@ public class FireballSpell extends Spell{
 	public void fireElite(SpellInfo spellinfo) {
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyDef.BodyType.DynamicBody;
-		bodyDef.position.set(spellinfo.playerposition.x, spellinfo.playerposition.y);
+		bodyDef.position.set(spellinfo.playerposition.x+spellinfo.firedirection.x, spellinfo.playerposition.y+spellinfo.firedirection.y);
 		Body body = spellinfo.arena.world.createBody(bodyDef);
 
 		CircleShape dynamicCircle = new CircleShape();

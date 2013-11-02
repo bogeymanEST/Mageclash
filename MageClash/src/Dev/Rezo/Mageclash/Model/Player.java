@@ -14,7 +14,7 @@ public class Player {
 		kinematicCircle.setRadius(0.5f);
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = kinematicCircle;
-		fixtureDef.density = 1.0f;
+		fixtureDef.density = 10000.0f;
 		fixtureDef.friction = 0.0f;
 		fixtureDef.restitution = 0.0f;
 		fixtureDef.filter.groupIndex=playerID;

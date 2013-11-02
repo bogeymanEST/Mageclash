@@ -108,15 +108,16 @@ public class GameScreen implements Screen,InputProcessor {
 	}
 
     /**
-     * Gets a vector pointing from the player to the touch location that has a length of {@link MagePlayer#SPEED}.
+     * Gets a vector pointing from the player to the touch location that has a length of {@link PlayerEntity#SPEED}.
      * @param touchX The X coordinate of the touch
      * @param touchY The Y coordinate of the touch
      * @param player The player whose location is the origin of the vector
-     * @return A vector pointing from the player to the touch location that has a length of {@link MagePlayer#SPEED}.
+     * @return A vector pointing from the player to the touch location that has a length of {@link PlayerEntity#SPEED}.
      */
     public Vector2 getVelocityVector(float touchX, float touchY, PlayerEntity player) {
         return new Vector2(touchX, touchY).sub(player.body.getPosition()).nor().scl(PlayerEntity.SPEED);
     }
+    
     public Vector2 getDirectionVector(float touchX, float touchY, PlayerEntity player) {
     	return new Vector2(touchX, touchY).sub(player.body.getPosition()).nor();
     }
