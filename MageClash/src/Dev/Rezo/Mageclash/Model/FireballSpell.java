@@ -23,7 +23,7 @@ public class FireballSpell extends Spell{
 		fixtureDef.friction = 1.0f;
 		fixtureDef.restitution = 1.0f;
 		fixtureDef.filter.groupIndex = spellinfo.playerID;
-		
+		body.createFixture(fixtureDef);
 
 		FireballEntity fEnt = new FireballEntity();
 		fEnt.body = body;

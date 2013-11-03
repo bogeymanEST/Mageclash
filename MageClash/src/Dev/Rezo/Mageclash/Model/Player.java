@@ -11,13 +11,14 @@ public class Player {
 		Body body = world.createBody(bodyDef);
 
 		CircleShape kinematicCircle = new CircleShape();
-		kinematicCircle.setRadius(0.5f);
+		kinematicCircle.setRadius(1);
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = kinematicCircle;
 		fixtureDef.density = 10000.0f;
 		fixtureDef.friction = 0.0f;
 		fixtureDef.restitution = 0.0f;
 		fixtureDef.filter.groupIndex=playerID;
+		body.createFixture(fixtureDef);
 
 		PlayerEntity pEnt = new PlayerEntity();
 		pEnt.body = body;
