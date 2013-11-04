@@ -20,7 +20,7 @@ public class FireballSpell extends Spell{
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = dynamicCircle;
 		fixtureDef.density = 1.0f;
-		fixtureDef.friction = 1.0f;
+		fixtureDef.friction = 0.0f;
 		fixtureDef.restitution = 1.0f;
 		fixtureDef.filter.groupIndex = spellinfo.playerID;
 		body.createFixture(fixtureDef);

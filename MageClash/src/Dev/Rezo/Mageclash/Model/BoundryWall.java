@@ -23,7 +23,7 @@ public class BoundryWall {
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = polShape;
 		fixtureDef.density = 1.0f;
-		fixtureDef.friction = 1.0f;
+		fixtureDef.friction = 0.0f;
 		fixtureDef.restitution = 1.0f;
 		fixtureDef.filter.groupIndex = 3;
 		body.createFixture(fixtureDef);

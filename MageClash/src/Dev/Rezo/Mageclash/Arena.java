@@ -22,11 +22,11 @@ public class Arena {
 		world = new World(new Vector2(0, 0), true);
 		
 		// Side walls
-		BoundryWall.create(new Vector2(-0.5f,4.5f), new Vector2(0.5f,4.5f), this);
-		BoundryWall.create(new Vector2(16.5f,4.5f), new Vector2(0.5f,4.5f), this);
+		BoundryWall.create(new Vector2(-0.5f,4.5f), new Vector2(0.5f,9f), this);
+		BoundryWall.create(new Vector2(16.5f,4.5f), new Vector2(0.5f,9f), this);
 		// Roof and floor
-		BoundryWall.create(new Vector2(8f,-0.5f), new Vector2(8,0.5f), this);
-		BoundryWall.create(new Vector2(8f,9.5f), new Vector2(8,0.5f), this);
+		BoundryWall.create(new Vector2(8f,-0.5f), new Vector2(16,0.5f), this);
+		BoundryWall.create(new Vector2(8f,9.5f), new Vector2(16,0.5f), this);
 		
 		playerentity1 = Player.create(5f,5f,(short)-1,world);
 		playerentity1.addToSpellBook(SpellType.FIREBALL.spell);
