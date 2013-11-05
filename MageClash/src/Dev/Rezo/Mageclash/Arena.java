@@ -5,6 +5,7 @@ import Dev.Rezo.Mageclash.Model.Player;
 import Dev.Rezo.Mageclash.Model.PlayerEntity;
 import Dev.Rezo.Mageclash.Model.SpellButton;
 import Dev.Rezo.Mageclash.Model.SpellType;
+import Dev.Rezo.Mageclash.Controller.ArenaContactListener;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.*;
 
 public class Arena {
 	public World world;
+	public ArenaContactListener contactlistener = new ArenaContactListener();
 	//--- Player entities ---
 	public PlayerEntity playerentity1;
 	public PlayerEntity playerentity2;
@@ -20,7 +22,7 @@ public class Arena {
 	
 	public Arena(){
 		world = new World(new Vector2(0, 0), true);
-		
+		world.setContactListener(contactlistener);
 		// Side walls
 		BoundryWall.create(new Vector2(-0.5f,4.5f), new Vector2(0.5f,9f), this);
 		BoundryWall.create(new Vector2(16.5f,4.5f), new Vector2(0.5f,9f), this);
