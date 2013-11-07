@@ -21,9 +21,11 @@ Entity fixB;
 			((PlayerEntity) fixA).HEALTH = ((PlayerEntity) fixA).HEALTH - 20;
 			if (((PlayerEntity) fixA).HEALTH < 0){
 			}
+			fixB.deleteThis=true;
 		}
-		if (fixA instanceof PlayerEntity){
-			((PlayerEntity) fixA).HEALTH = ((PlayerEntity) fixA).HEALTH - 20;
+		if (fixB instanceof PlayerEntity){
+			((PlayerEntity) fixB).HEALTH = ((PlayerEntity) fixB).HEALTH - 20;
+			fixA.deleteThis=true;
 		}
 	}
 
