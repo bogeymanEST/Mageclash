@@ -9,24 +9,24 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
 public class ArenaContactListener implements ContactListener {
-Entity fixA;
-Entity fixB;
 
 	@Override
 	public void beginContact(Contact contact) {
-		// TODO Auto-generated method stub
-		fixA = (Entity) contact.getFixtureA().getUserData();
-		fixB = (Entity) contact.getFixtureB().getUserData();
-		if (fixA instanceof PlayerEntity){
-			((PlayerEntity) fixA).HEALTH = ((PlayerEntity) fixA).HEALTH - 20;
-			if (((PlayerEntity) fixA).HEALTH < 0){
-			}
-			fixB.deleteThis=true;
+		Object dA = contact.getFixtureA().getBody().getUserData();
+		Object dB = contact.getFixtureB().getBody().getUserData();
+		PlayerEntity pEntity = null;
+		Entity entity = null;
+
+		if(dA instanceof PlayerEntity) {
+			pEntity = (PlayerEntity) dA;
+			entity = (Entity) dB;
+		} else if(dB instanceof PlayerEntity) {
+			pEntity = (PlayerEntity) dB;
+			entity = (Entity) dA;
 		}
-		if (fixB instanceof PlayerEntity){
-			((PlayerEntity) fixB).HEALTH = ((PlayerEntity) fixB).HEALTH - 20;
-			fixA.deleteThis=true;
-		}
+		if(pEntity == null || entity == null) return;
+		pEntity.HEALTH -= 20;
+		entity.deleteThis = true;
 	}
 
 	@Override
